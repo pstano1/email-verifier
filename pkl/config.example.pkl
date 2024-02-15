@@ -1,0 +1,8 @@
+@go.Package { name = "github.com/pstano1/emailVerfier/config" }
+module pstano1.emailVerifier.Config
+
+import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.3#/go.pkl" 
+
+/// The port to listen on.
+typealias Port = UInt16(this > 0)
+port: Port = 8000
