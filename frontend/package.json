@@ -1,0 +1,25 @@
+{
+  "name": "email-verifier",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack ./src/app.ts --output-path ./bin --watch",
+    "build": "webpack ./src/app.ts --output-path ./bin"
+  },
+  "author": "Paweł Stano",
+  "dependencies": {
+    "mithril": "^2.2.2",
+    "ts-loader": "^9.5.1"
+  },
+  "devDependencies": {
+    "@types/mithril": "^2.2.6",
+    "@types/node": "^20.11.19",
+    "css-loader": "^6.8.1",
+    "sass": "^1.70.0",
+    "style-loader": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
