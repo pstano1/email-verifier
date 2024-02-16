@@ -39,7 +39,17 @@ func (i *HTTPInstanceAPI) Run() {
 	API.POST("/verify", i.verifyEmailAddresses)
 
 	i.log.Debugf("Starting server at port :%v", i.port)
-	log.Fatal(fasthttp.ListenAndServe(fmt.Sprintf(":%v", i.port), r.Handler))
+	log.Fatal(fasthttp.ListenAndServe(fmt.Sprintf(":%v", i.port), i.handleCORS(r.Handler)))
+}
+
+func (i *HTTPInstanceAPI) handleCORS(h fasthttp.RequestHandler) fasthttp.RequestHandler {
+	return func(ctx *fasthttp.RequestCtx) {
+		ctx.Response.Header.Set("Access-Control-Allow-Origin", "*")
+		ctx.Response.Header.Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		ctx.Response.Header.Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		h(ctx)
+	}
 }
 
 func (i *HTTPInstanceAPI) verifyEmailAddresses(ctx *fasthttp.RequestCtx) {

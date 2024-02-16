@@ -13,7 +13,12 @@ The emailVerifier project is an application designed to verify validity of email
 ```console
 git clone git@github.com:pstano1/email-verifier.git
 cd email-verifier
-go mod tidy && go mod download
 make config
-go run ./cmd
+make build
+```
+
+lalter, simply use:
+
+```console
+./start.sh
 ```

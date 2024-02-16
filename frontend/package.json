@@ -8,14 +8,15 @@
   },
   "author": "Paweł Stano",
   "dependencies": {
-    "mithril": "^2.2.2",
-    "ts-loader": "^9.5.1"
+    "mithril": "^2.2.2"
   },
   "devDependencies": {
+    "ts-loader": "^9.5.1",
     "@types/mithril": "^2.2.6",
     "@types/node": "^20.11.19",
     "css-loader": "^6.8.1",
     "sass": "^1.70.0",
+    "sass-loader": "^14.1.0",
     "style-loader": "^3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",

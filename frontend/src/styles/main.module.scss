@@ -1,0 +1,74 @@
+@import '_colours';
+
+.wrapper {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $celestialBlue;
+}
+
+.searchBar {
+    width: 50dvw;
+    display: flex;
+    position: relative;
+    height: fit-content;
+}
+
+.textField {
+    flex: 1;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    border: 2px solid $whiteSmoke;
+    background-color: $whiteSmoke;
+    transition: border .2s ease-in-out;
+    box-shadow: 1px 1px 4px 0px rgba(66, 68, 90, 1); 
+
+    &:focus {
+        border: 2px solid $coral;
+    }
+}
+
+.searchButton {
+    right: 0;
+    outline: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: absolute;
+    color: $whiteSmoke;
+    background-color: $coral;
+    border: 2px solid $coral;
+    border-radius: 0 1rem 1rem 0;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        background-color: $burntSienna;
+        border-color: $burntSienna;
+    }
+}
+
+@mixin result {
+    width: 50dvw;
+    padding: 1rem;
+    margin-top: 1rem;
+    color: $whiteSmoke;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 4px 0px rgba(66, 68, 90, 1); 
+}
+
+.resultError {
+   @include result();
+
+   background-color: $madder;
+}
+
+.resultSuccess {
+    @include result();
+ 
+    background-color: $pistachio;
+ }

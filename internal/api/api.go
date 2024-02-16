@@ -1,6 +1,7 @@
 package api
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/pstano1/emailVerifier/internal/pkg"
@@ -26,7 +27,7 @@ func NewInstanceAPI(conf *APIConfig) *InstanceAPI {
 }
 
 func (a *InstanceAPI) VerifyEmailAddress(emailAddresses []string) ([]pkg.DomainVerifierResponse, error) {
-	a.log.Debugf("starting email addresses verification")
+	a.log.Debugf("starting email addresses verification: %d", len(emailAddresses))
 
 	var response = make([]pkg.DomainVerifierResponse, len(emailAddresses))
 	var err error
@@ -35,8 +36,14 @@ func (a *InstanceAPI) VerifyEmailAddress(emailAddresses []string) ([]pkg.DomainV
 		if ok := a.mailVerifier.ValidateEmailAddress(address); !ok {
 			response[index].IsValid = false
 		}
-		emailArray := strings.Split(address, "@")
-		response[index], err = a.mailVerifier.VerifyDomain(emailArray[1])
+		emailArray := strings.SplitN(address, "@", 2)
+		domain := ""
+		if len(emailArray) > 1 {
+			domain = emailArray[1]
+		} else {
+			return response, errors.New("something went wrong when splitting an address")
+		}
+		response[index], err = a.mailVerifier.VerifyDomain(domain)
 		if err != nil {
 			response[index].IsValid = false
 		}
